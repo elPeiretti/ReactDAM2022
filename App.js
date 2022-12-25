@@ -8,8 +8,10 @@ function ListadoScreen() {
   return (
     <View style={{ flex: 1, alignItems: 'center', backgroundColor: 'white'}}>
       <Text style={{color: 'black', fontSize: 30, fontWeight: 'bold'}}>Tareas</Text>
-      <ItemTarea text={"milanesa"}
-      />
+      <ItemTarea text={"milanesa"}/>
+      <ItemTarea text={"milanesa"}/>
+      <ItemTarea text={"beste es uno muy largo este es uno muy largo este es uno muy largo este es uno muy largo este es uno muy largo "}/>
+      
     </View>
   );
 }

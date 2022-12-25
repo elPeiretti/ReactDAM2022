@@ -4,13 +4,12 @@ import BouncyCheckbox from "react-native-bouncy-checkbox";
 
 function ItemTarea(props) {
     return (
-        <View style={styles.container}>
-            <View style={styles.tareaContainer}>
-                <BouncyCheckbox
-                    text = {props.text}
-                    onPress={(isChecked) => {}} 
-                />
-            </View>
+        <View style={styles.tareaContainer}>
+            <BouncyCheckbox
+                textStyle = {{textAlign: 'justify'}}
+                text = {props.text}
+                onPress={(isChecked) => {}} 
+            />
         </View>
     );
 }
@@ -18,17 +17,12 @@ function ItemTarea(props) {
 export default ItemTarea;
 
 const styles = StyleSheet.create({
-    container: {
-        flexDirection: 'row',
-        marginHorizontal: 20,
-    },
     tareaContainer: {
+        width: '83%',
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        flex: 1,
-        paddingHorizontal: 10,
         paddingVertical: 5,
-        minHeight: 50,
+        minHeight: 30,
     },
 });
