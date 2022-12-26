@@ -4,16 +4,14 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ItemTarea from './componentes/ItemTarea';
 import { FAB } from 'react-native-paper';
+import ListadoTareas from './componentes/ListadoTareas';
 
 
 function ListadoScreen() {
   return (
     <View style={{ flex: 1, alignItems: 'center', backgroundColor: 'white'}}>
       <Text style={{color: 'black', fontSize: 30, fontWeight: 'bold'}}>Tareas</Text>
-      <ScrollView>
-        <ItemTarea text={"milanesa"}/>
-        <ItemTarea text={"beste es uno muy largo este es uno muy largo este es uno muy largo este es uno muy largo este es uno muy largo "}/>
-      </ScrollView>
+      <ListadoTareas/>
       <FAB 
           icon="plus"
           style={styles.fab}

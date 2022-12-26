@@ -8,6 +8,7 @@ function ItemTarea(props) {
             <BouncyCheckbox
                 textStyle = {{textAlign: 'justify'}}
                 text = {props.text}
+                isChecked = {props.isChecked}
                 onPress={(isChecked) => {}} 
             />
         </View>
