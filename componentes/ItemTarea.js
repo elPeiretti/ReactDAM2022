@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity} from "react-native";
+import { StyleSheet, View} from "react-native";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 
 function ItemTarea(props) {
@@ -18,11 +18,12 @@ export default ItemTarea;
 
 const styles = StyleSheet.create({
     tareaContainer: {
-        width: '83%',
+        marginRight: 100,
+        marginLeft: 20,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingVertical: 5,
+        paddingVertical: 7,
         minHeight: 30,
     },
 });
