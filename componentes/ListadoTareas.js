@@ -21,5 +21,6 @@ const PARATEST = {
         {id: "2", texto: 'esta es la tarea 2', done: false},
         {id: "3", texto: 'comprar manzanas', done: true},
         {id: "4", texto: 'esta es la tarea mas larga para ver como queda en el listado. uno dos tres cuatro cinco seis.', done: false},
+        {id: "5", texto: 'largaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', done: false}
     ]
 }
