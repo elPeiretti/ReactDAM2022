@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Button} from 'react-native';
+import { Button} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ListadoScreen from './componentes/ListadoScreen';

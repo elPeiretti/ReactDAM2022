@@ -19,12 +19,12 @@ export default ItemTarea;
 
 const styles = StyleSheet.create({
     tareaContainer: {
-        marginRight: 100,
-        marginLeft: 20,
+        marginHorizontal: 10,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
         paddingVertical: 7,
+        paddingHorizontal: 10,
         minHeight: 30,
     },
 });
