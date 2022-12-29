@@ -8,7 +8,6 @@ function ListadoScreen() {
   const [tareas, setTareas] = useState([]);
 
   const addTarea = (tarea) => {
-    if (tarea == null) return;
     setTareas([...tareas, tarea]);
     Keyboard.dismiss();
   }

@@ -7,6 +7,7 @@ const InputTarea = (props) => {
     const [tarea, setTarea] = useState();
 
     const agregarTarea = (t) => {
+        if (t==null) return;
         props.agregarTarea({texto: t, isChecked: false});
         setTarea(null);
     }
