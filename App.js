@@ -3,6 +3,7 @@ import { Button} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ListadoScreen from './componentes/ListadoScreen';
+import EditarScreen from './componentes/EditarScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -14,14 +15,19 @@ function App() {
         <Stack.Screen 
           name="Listado de tareas"
           component={ListadoScreen}
-          options={{
+          options={({navigation}) => ({
             headerRight: () => (
             <Button
               title="editar"
               color='#f09f48'
-              onPress={()=>console.log("editar")}
+              onPress={()=>navigation.navigate("Editar tarea")}
             />
-          )}}
+          )})}
+        />
+        <Stack.Screen
+          name="Editar tarea"
+          component={EditarScreen}
+          options={{title:""}}
         />
       </Stack.Navigator>
     </NavigationContainer>

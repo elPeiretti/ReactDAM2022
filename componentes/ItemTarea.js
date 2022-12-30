@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
     tareaContainer: {
         marginHorizontal: 10,
         flexDirection: 'row',
+        flex: 1,
         justifyContent: 'space-between',
         alignItems: 'center',
         paddingVertical: 7,
