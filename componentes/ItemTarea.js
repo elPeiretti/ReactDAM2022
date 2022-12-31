@@ -9,7 +9,9 @@ function ItemTarea(props) {
                 textStyle = {{textAlign: 'justify'}}
                 text = {props.text}
                 isChecked = {props.isChecked}
-                onPress={(isChecked) => {}} 
+                onPress={(isChecked) => {
+                    //logica para modificar la tarea guardada
+                }} 
             />
         </View>
     );
