@@ -8,7 +8,7 @@ const InputTarea = (props) => {
 
     const agregarTarea = (t) => {
         if (t==null) return;
-        props.agregarTarea({texto: t, isChecked: false});
+        props.agregarTarea({text: t, isChecked: false});
         setTarea(null);
     }
 
@@ -17,7 +17,7 @@ const InputTarea = (props) => {
             <TextInput 
                 style={styles.input}
                 value={tarea}
-                onChangeText={texto => setTarea(texto)}
+                onChangeText={text => setTarea(text)}
                 placeholder={'Agregue una tarea...'}
             />
             <TouchableOpacity onPress={() => agregarTarea(tarea)}>

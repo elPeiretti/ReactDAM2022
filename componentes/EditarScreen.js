@@ -21,6 +21,7 @@ function EditarScreen() {
   };
 
   const guardarEdicion = () => {
+    // TODO
     var aux = tareas;
     aux.forEach(t => {
         if (t.texto == tareaAModificar){
