@@ -52,7 +52,7 @@ function ListadoScreen() {
       <SafeAreaView style={{ flex:1, backgroundColor: 'white'}}>
         <Text style={{color: 'black', fontSize: 30, fontWeight: 'bold', textAlign: 'center'}}>Tareas</Text>
         <ScrollView>
-            {tareas.map((t) => (<ItemTarea text={t.text} isChecked={t.isChecked} key={t.key}/>))}
+            {tareas.map((t) => (<ItemTarea text={t.text} isChecked={t.isChecked} id={t.key}/>))}
         </ScrollView>
         <InputTarea agregarTarea={addTarea}/>
       </SafeAreaView>
