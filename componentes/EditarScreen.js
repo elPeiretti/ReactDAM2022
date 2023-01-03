@@ -1,13 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SafeAreaView, Text, StyleSheet, ScrollView, TouchableOpacity, View, Modal, KeyboardAvoidingView, TextInput} from 'react-native';
 import ItemTarea from './ItemTarea';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function EditarScreen() {
 
-  const [tareas, setTareas] = useState([{texto: "una tarea MUY MUY MUY MUY LARGA", done: true}]);
+  const [tareas, setTareas] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [tareaEdit, setTareaEdit] = useState();
   const [tareaAModificar, setTareaAModificar] = useState();
+
+  const loadTareas = async () => {
+    console.log('cargando tareas...');
+    try{
+      const keys = await AsyncStorage.getAllKeys();
+      const res = await AsyncStorage.multiGet(keys);
+
+      if (res !== null){
+        console.log(res.map( t => JSON.parse(t[1])));
+        setTareas(res.map( t => JSON.parse(t[1])));
+      }
+    }
+    catch(e){
+      console.log(e);
+    }
+  }
+
+  useEffect(() => {loadTareas()},[]);
 
   const deleteTarea = (tareaPorEliminar) => {
     setTareas(tareas.filter((tarea) => tarea.texto != tareaPorEliminar));
@@ -69,7 +88,7 @@ function EditarScreen() {
         <ScrollView>
             {tareas.map((t) => (
                 <View style={styles.containerTarea}>
-                    <ItemTarea text={t.texto} isChecked={t.done}/>
+                    <ItemTarea text={t.text} isChecked={t.isChecked} id={t.key}/>
                     <TouchableOpacity onPress={() => openEditar(t.texto)}>
                         <View style={styles.buttonEditar}>
                             <Text style={{color:'#FFFFFF', fontSize: 12}}>editar</Text>
