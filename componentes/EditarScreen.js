@@ -97,6 +97,7 @@ const styles = StyleSheet.create({
         paddingVertical: 7,
         paddingHorizontal: 10,
         minHeight: 30,
+        flex: 1,
     },
     buttonBorrar:{
         height: 20,
@@ -145,6 +146,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderRadius: 12,
         paddingHorizontal: 10,
+        color: '#000'
     },
     buttonGuardar: {
         borderRadius: 5,
