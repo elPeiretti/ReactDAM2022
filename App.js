@@ -11,7 +11,7 @@ const Stack = createNativeStackNavigator();
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='ListadoScreen'>
+      <Stack.Navigator initialRouteName='Listado de tareas'>
         <Stack.Screen 
           name="Listado de tareas"
           component={ListadoScreen}

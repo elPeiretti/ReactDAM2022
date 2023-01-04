@@ -3,18 +3,22 @@ import { SafeAreaView, Text, StyleSheet, ScrollView, Keyboard } from 'react-nati
 import InputTarea from './InputTarea';
 import ItemTarea from './ItemTarea';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useIsFocused } from '@react-navigation/native';
 
 function ListadoScreen() {
 
   const [tareas, setTareas] = useState([]);
+  const isFocused = useIsFocused();
+
 
   const loadTareas = async () => {
-    console.log('cargando tareas...');
+    console.log('cargando tareas... (listadoscreen)');
     try{
       const keys = await AsyncStorage.getAllKeys();
       const res = await AsyncStorage.multiGet(keys);
 
       if (res !== null){
+        console.log(res.map( t => JSON.parse(t[1])));
         setTareas(res.map( t => JSON.parse(t[1])));
       }
     }
@@ -46,7 +50,7 @@ function ListadoScreen() {
     Keyboard.dismiss();
   }
 
-  useEffect(() => {loadTareas()},[]);
+  useEffect(() => { if (isFocused) loadTareas()},[isFocused]);
 
     return (
       <SafeAreaView style={{ flex:1, backgroundColor: 'white'}}>
