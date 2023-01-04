@@ -28,8 +28,8 @@ function EditarScreen() {
 
   useEffect(() => {loadTareas()},[]);
 
-  const deleteTarea = (tareaPorEliminar) => {
-    setTareas(tareas.filter((tarea) => tarea.texto != tareaPorEliminar));
+  const deleteTarea = (keyAEliminar) => {
+    setTareas(tareas.filter((tarea) => tarea.key != keyAEliminar));
   };
 
   const openEditar = (tareaPorEditar) => {
@@ -94,7 +94,7 @@ function EditarScreen() {
                             <Text style={{color:'#FFFFFF', fontSize: 12}}>editar</Text>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={()=> deleteTarea(t.texto)}>
+                    <TouchableOpacity onPress={()=> deleteTarea(t.key)}>
                         <View style={styles.buttonBorrar}>
                             <Text style={{color:'#FFFFFF', fontSize: 12}}>eliminar</Text>
                         </View>
