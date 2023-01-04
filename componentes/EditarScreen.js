@@ -28,8 +28,14 @@ function EditarScreen() {
 
   useEffect(() => {loadTareas()},[]);
 
-  const deleteTarea = (keyAEliminar) => {
-    setTareas(tareas.filter((tarea) => tarea.key != keyAEliminar));
+  const deleteTarea = async (keyAEliminar) => {
+    try{
+        await AsyncStorage.removeItem(keyAEliminar);
+        setTareas(tareas.filter((tarea) => tarea.key != keyAEliminar));
+    }
+    catch(e){
+        console.log(e);
+    }
   };
 
   const openEditar = ({keyPorEditar, texto}) => {
@@ -43,7 +49,7 @@ function EditarScreen() {
     
     var tarea = tareas.find(t => t.key == keyPorEditar);
     tarea.text = tareaEdit;
- 
+    //cambiarlo directamente y que lo que sigue de un error podria ser problematico....
     const tareaJson = JSON.stringify(tarea);
     await AsyncStorage.setItem(tarea.key, tareaJson);
     setModalVisible(false);
