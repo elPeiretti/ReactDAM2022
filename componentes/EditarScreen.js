@@ -8,7 +8,7 @@ function EditarScreen() {
   const [tareas, setTareas] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [tareaEdit, setTareaEdit] = useState();
-  const [tareaAModificar, setTareaAModificar] = useState();
+  const [keyPorEditar, setKeyPorEditar] = useState();
 
   const loadTareas = async () => {
     console.log('cargando tareas...');
@@ -32,22 +32,20 @@ function EditarScreen() {
     setTareas(tareas.filter((tarea) => tarea.key != keyAEliminar));
   };
 
-  const openEditar = (tareaPorEditar) => {
+  const openEditar = ({keyPorEditar, texto}) => {
     console.log("editar");
-    setTareaEdit(tareaPorEditar);
-    setTareaAModificar(tareaPorEditar);
+    setTareaEdit(texto);
+    setKeyPorEditar(keyPorEditar);
     setModalVisible(true);
   };
 
-  const guardarEdicion = () => {
-    // TODO
-    var aux = tareas;
-    aux.forEach(t => {
-        if (t.texto == tareaAModificar){
-            t.texto = tareaEdit;
-        }
-    });
-    setTareas(aux);
+  const guardarEdicion = async () => {
+    
+    var tarea = tareas.find(t => t.key == keyPorEditar);
+    tarea.text = tareaEdit;
+ 
+    const tareaJson = JSON.stringify(tarea);
+    await AsyncStorage.setItem(tarea.key, tareaJson);
     setModalVisible(false);
   };
 
@@ -89,7 +87,7 @@ function EditarScreen() {
             {tareas.map((t) => (
                 <View style={styles.containerTarea}>
                     <ItemTarea text={t.text} isChecked={t.isChecked} id={t.key}/>
-                    <TouchableOpacity onPress={() => openEditar(t.texto)}>
+                    <TouchableOpacity onPress={() => openEditar({keyPorEditar: t.key, texto: t.text})}>
                         <View style={styles.buttonEditar}>
                             <Text style={{color:'#FFFFFF', fontSize: 12}}>editar</Text>
                         </View>
