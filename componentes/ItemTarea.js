@@ -23,7 +23,7 @@ function ItemTarea(props) {
                     saveState(!checked);    
                 }}  
             />
-            <Text style={styles.texto}>{props.text}</Text>
+            <Text style={[styles.texto, checked && styles.textoDisabled]}>{props.text}</Text>
         </View>
     );
 }
@@ -46,6 +46,9 @@ const styles = StyleSheet.create({
         fontFamily: "JosefinSans-Regular",
         fontSize: 16,
         flex: 1,
-        color: '#5A5A5A'
+        color: '#5A5A5A',
+    },
+    textoDisabled: {
+        textDecorationLine: 'line-through',
     }
 });
