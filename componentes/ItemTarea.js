@@ -50,5 +50,6 @@ const styles = StyleSheet.create({
     },
     textoDisabled: {
         textDecorationLine: 'line-through',
+        color: '#A5A5A5'
     }
 });
