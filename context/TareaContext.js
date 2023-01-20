@@ -1,10 +1,28 @@
-import React, { createContext } from "react";
+import React, { createContext, useState } from "react";
+import { Keyboard} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const TareaContext = createContext(null);
 
 export const ContextProvider = (props) => {
 
     const [tareas, setTareas] = useState([]);
+
+    const loadTareas = async () => {
+        console.log('cargando tareas...');
+        try{
+          const keys = await AsyncStorage.getAllKeys();
+          const res = await AsyncStorage.multiGet(keys);
+    
+          if (res !== null){
+            console.log(res.map( t => JSON.parse(t[1])));
+            setTareas(res.map( t => JSON.parse(t[1])));
+          }
+        }
+        catch(e){
+          console.log(e);
+        }
+      }
 
     const addTarea = async (tarea) => {
     
@@ -27,7 +45,7 @@ export const ContextProvider = (props) => {
             console.error(e);
         }
         Keyboard.dismiss();
-        }
+    }
 
     const deleteTarea = async (keyAEliminar) => {
         try{
@@ -41,7 +59,7 @@ export const ContextProvider = (props) => {
 
 
     return (
-        <TareaContext.Provider value={{tareas, add: addTarea, delete: deleteTarea}}>
+        <TareaContext.Provider value={{tareas, addTarea, deleteTarea, loadTareas}}>
             {props.children}
         </TareaContext.Provider>
     );
