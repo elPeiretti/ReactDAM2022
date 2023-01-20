@@ -57,9 +57,18 @@ export const ContextProvider = (props) => {
         }
     };
 
+    const updateTarea = async (keyPorEditar, tareaEdit) => {
+    
+        var tarea = tareas.find(t => t.key == keyPorEditar);
+        tarea.text = tareaEdit;
+        //cambiarlo directamente y que lo que sigue de un error podria ser problematico....
+        const tareaJson = JSON.stringify(tarea);
+        await AsyncStorage.setItem(tarea.key, tareaJson);
+      };
+
 
     return (
-        <TareaContext.Provider value={{tareas, addTarea, deleteTarea, loadTareas}}>
+        <TareaContext.Provider value={{tareas, addTarea, deleteTarea, loadTareas, updateTarea}}>
             {props.children}
         </TareaContext.Provider>
     );

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect} from 'react';
 import { SafeAreaView, Text, StyleSheet, ScrollView } from 'react-native';
 import InputTarea from './InputTarea';
 import ItemTarea from './ItemTarea';
@@ -12,7 +12,6 @@ function ListadoScreen() {
   const {
     tareas,
     addTarea,
-    deleteTarea,
     loadTareas
   } = useContext(TareaContext);
 

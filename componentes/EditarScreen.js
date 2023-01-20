@@ -1,42 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { SafeAreaView, Text, StyleSheet, ScrollView, TouchableOpacity, View, Modal, KeyboardAvoidingView, TextInput} from 'react-native';
 import ItemTarea from './ItemTarea';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { TareaContext } from '../context/TareaContext';
 
 function EditarScreen() {
 
-  const [tareas, setTareas] = useState([]);
-  const [modalVisible, setModalVisible] = useState(false);
-  const [tareaEdit, setTareaEdit] = useState();
-  const [keyPorEditar, setKeyPorEditar] = useState();
+    const {
+        tareas,
+        deleteTarea,
+        loadTareas,
+        updateTarea
+    } = useContext(TareaContext);
 
-  const loadTareas = async () => {
-    console.log('cargando tareas...');
-    try{
-      const keys = await AsyncStorage.getAllKeys();
-      const res = await AsyncStorage.multiGet(keys);
-
-      if (res !== null){
-        console.log(res.map( t => JSON.parse(t[1])));
-        setTareas(res.map( t => JSON.parse(t[1])));
-      }
-    }
-    catch(e){
-      console.log(e);
-    }
-  }
+    const [modalVisible, setModalVisible] = useState(false);
+    const [tareaEdit, setTareaEdit] = useState();
+    const [keyPorEditar, setKeyPorEditar] = useState();
 
   useEffect(() => {loadTareas()},[]);
-
-  const deleteTarea = async (keyAEliminar) => {
-    try{
-        await AsyncStorage.removeItem(keyAEliminar);
-        setTareas(tareas.filter((tarea) => tarea.key != keyAEliminar));
-    }
-    catch(e){
-        console.log(e);
-    }
-  };
 
   const openEditar = ({keyPorEditar, texto}) => {
     console.log("editar");
@@ -45,13 +25,8 @@ function EditarScreen() {
     setModalVisible(true);
   };
 
-  const guardarEdicion = async () => {
-    
-    var tarea = tareas.find(t => t.key == keyPorEditar);
-    tarea.text = tareaEdit;
-    //cambiarlo directamente y que lo que sigue de un error podria ser problematico....
-    const tareaJson = JSON.stringify(tarea);
-    await AsyncStorage.setItem(tarea.key, tareaJson);
+  const guardarEdicion = () => {
+    updateTarea(keyPorEditar, tareaEdit);
     setModalVisible(false);
   };
 
