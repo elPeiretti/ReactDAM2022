@@ -16,7 +16,7 @@ function EditarScreen() {
     const [tareaEdit, setTareaEdit] = useState();
     const [keyPorEditar, setKeyPorEditar] = useState();
 
-  useEffect(() => {loadTareas()},[]);
+  useEffect(() => {if (!modalVisible) loadTareas()},[modalVisible]);
 
   const openEditar = ({keyPorEditar, texto}) => {
     console.log("editar");
@@ -26,7 +26,9 @@ function EditarScreen() {
   };
 
   const guardarEdicion = () => {
-    updateTarea(keyPorEditar, tareaEdit);
+    var tarea = JSON.parse(JSON.stringify(tareas.find(t => t.key == keyPorEditar)));
+    tarea.text = tareaEdit;
+    updateTarea(tarea);
     setModalVisible(false);
   };
 

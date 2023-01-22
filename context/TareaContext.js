@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const TareaContext = createContext(null);
 
-export const ContextProvider = (props) => {
+export const ContextProvider = ({children}) => {
 
     const [tareas, setTareas] = useState([]);
 
@@ -57,19 +57,40 @@ export const ContextProvider = (props) => {
         }
     };
 
-    const updateTarea = async (keyPorEditar, tareaEdit) => {
+    const updateTarea = async tarea => {
+
+        //para updatear el estado del checkbox
+        const tareasCopy = JSON.parse(JSON.stringify((tareas)));
+        tareasCopy.find(t => t.key == tarea.key).isChecked = tarea.isChecked;
+        
+    
+        const tareaJson = JSON.stringify(tarea);
+        setTareas(tareasCopy);
+        await AsyncStorage.setItem(tarea.key, tareaJson);
+    };
+
+    const updateTareaText = async (keyPorEditar, tareaEdit) => {
     
         var tarea = tareas.find(t => t.key == keyPorEditar);
         tarea.text = tareaEdit;
         //cambiarlo directamente y que lo que sigue de un error podria ser problematico....
         const tareaJson = JSON.stringify(tarea);
         await AsyncStorage.setItem(tarea.key, tareaJson);
-      };
+    };
 
+    const updateTareaCheck = async (tarea) => {
+        const tareaJson = JSON.stringify(tarea);
+
+        const test = JSON.parse(JSON.stringify((tareas)));
+        test.find(t => t.key == tarea.key).isChecked = tarea.isChecked;
+        setTareas(test);
+        
+        await AsyncStorage.setItem(tarea.key, tareaJson);
+    };
 
     return (
         <TareaContext.Provider value={{tareas, addTarea, deleteTarea, loadTareas, updateTarea}}>
-            {props.children}
+            {children}
         </TareaContext.Provider>
     );
 }
