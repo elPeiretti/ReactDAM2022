@@ -1,17 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { StyleSheet, View, Text} from "react-native";
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Checkbox } from 'react-native-paper';
+import { TareaContext } from '../context/TareaContext';
 
 function ItemTarea(props) {
 
     const [id,setId] = useState(props.id);
     const [checked, setChecked] = useState(props.isChecked);
 
+    const {
+        updateTarea
+    } = useContext(TareaContext);
+
     const saveState = async (isChecked) => {
         setChecked(isChecked);
-        const tareaJson = JSON.stringify({text: props.text, isChecked: isChecked, key: id});
-        await AsyncStorage.setItem(id, tareaJson);
+        updateTarea({text: props.text, isChecked: isChecked, key: id});
     };
 
     return (
