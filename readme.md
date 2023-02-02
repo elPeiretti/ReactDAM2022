@@ -1,8 +1,8 @@
 # Desarrollo de aplicaciones móviles - Practica React Native
 Universidad Tecnologica Nacional - Facultad Regional Santa Fe
-<p float="left">
-    <img src="./assets/checkbox.gif" width="30%" height="30%">
-    <img src="./assets/edicion.gif" width="30%" height="30%">
+<p float="center">
+    <img src="./assets/checkbox.gif" width="35%" height="35%">
+    <img src="./assets/edicion.gif" width="35%" height="35%">
 </p>
 <h2>Integrantes:</h2>
 <ul>
